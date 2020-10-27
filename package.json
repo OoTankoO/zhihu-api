@@ -1,0 +1,19 @@
+{
+  "name": "zhihu-api",
+  "version": "1.0.0",
+  "description": "仿知乎restful api",
+  "main": "app/index.js",
+  "scripts": {
+    "start": "nodemon app/index.js"
+  },
+  "author": "Tank",
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.13.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-router": "^9.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}

@@ -2,8 +2,10 @@ const Koa = require('koa');
 const bodyparser = require('koa-bodyparser');
 const error = require('koa-json-error');
 const parameter = require('koa-parameter');
+const mongoose = require('mongoose');
 const app = new Koa();
 const routing = require('./routes');
+const {connectionStr} = require('./config');
 app.use(async (ctx, next) => {
   try{
     await next();
@@ -14,6 +16,12 @@ app.use(async (ctx, next) => {
     }
   }
 });
+
+mongoose.connect(connectionStr, {useUnifiedTopology: true,  useNewUrlParser: true}, () => {
+    console.log('DB链接成功');
+});
+mongoose.connection.on('error', console.error);
+
 app.use(error({
   postFormat: (err, {stack, ...rest}) => {
     return process.env.NODE_ENV === 'production' ?

@@ -6,16 +6,16 @@ const mongoose = require('mongoose');
 const app = new Koa();
 const routing = require('./routes');
 const {connectionStr} = require('./config');
-app.use(async (ctx, next) => {
-  try{
-    await next();
-  }catch(err) {
-    ctx.status = err.status || err.statusCode || 500;
-    ctx.body = {
-      message: err.message
-    }
-  }
-});
+// app.use(async (ctx, next) => {
+//   try{
+//     await next();
+//   }catch(err) {
+//     ctx.status = err.status || err.statusCode || 500;
+//     ctx.body = {
+//       message: err.message
+//     }
+//   }
+// });
 
 mongoose.connect(connectionStr, {useUnifiedTopology: true,  useNewUrlParser: true}, () => {
     console.log('DB链接成功');

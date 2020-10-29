@@ -5,7 +5,7 @@ class UsersCtl {
         ctx.body = await User.find();
     }
     async findById(ctx) {
-        const user = User.findById(ctx.params.id);
+        const user = await User.findById(ctx.params.id);
         if (!user) {
             ctx.throw(404, '用户不存在');
         }

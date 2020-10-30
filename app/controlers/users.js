@@ -55,11 +55,16 @@ class UsersCtl {
         // 用户名密码不匹配
         const user = await User.findOne(ctx.request.body);
         if (!user) { ctx.throw(401, '用户名或密码不正确'); }
-        const {id, name} = user;
-        const token = jsonwebtoken.sign({id, name}, secret, {
+        const {_id, name} = user;
+        const token = jsonwebtoken.sign({_id, name}, secret, {
             expiresIn: '1d'
         });
         ctx.body = {token};
+    }
+
+    async checkOwner(ctx, next) {
+         if (ctx.params.id !== ctx.state.user._id) { ctx.throw(403, '没有权限'); }
+         await next();
     }
 }
 

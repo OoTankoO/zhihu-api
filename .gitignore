@@ -2,3 +2,5 @@
 package-lock.json
 /.idea
 /app/config.js
+/app/public/**/*.(png|jpg)
+

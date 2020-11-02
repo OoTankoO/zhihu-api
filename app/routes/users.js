@@ -3,7 +3,8 @@ const jsonwebtoken = require('jsonwebtoken');
 const jwt = require('koa-jwt');
 const router = new Router({prefix: '/users'});
 const {find, findById, create, update, delete:del,
-    login, checkOwner} = require('../controlers/users');
+    login, checkOwner,
+    listFollowing} = require('../controlers/users');
 
 const {secret} = require('../config');
 
@@ -28,5 +29,8 @@ router.patch('/:id', auth, checkOwner, update); // 部分更新
 router.delete('/:id', auth, checkOwner, del);
 
 router.post('/login', login);
+
+router.get('/:id/following', listFollowing);
+router.put('/following/:id', auth);
 
 module.exports = router;

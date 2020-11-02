@@ -3,6 +3,5 @@ package-lock.json
 /.idea
 /app/config.js
 /app/public/*.png
-/app/public/*.jpeg
+/app/public/*.jpeg:
 /app/public/*.jpg
-
